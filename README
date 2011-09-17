@@ -1,1 +1,7 @@
-As soon as possible...
+Requisitos:
+
+1. PEAR php [pear.php.net]
+	sudo aptitude instal php-pear
+
+2. PEAR::HTML_Table
+	sudo pear install HTML_Table
