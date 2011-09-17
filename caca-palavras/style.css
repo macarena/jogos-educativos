@@ -132,11 +132,23 @@ h2.jogo-header {
 	margin-bottom: .3em;
 }
 
-table.tabela tbody tr td {
+table.P tbody tr td {
+    font-size: 38px;
+    height: 56px;
+    line-height: 56px;
+    width: 56px;
+}
+table.M tbody tr td {
     font-size: 32px;
     height: 38px;
     line-height: 38px;
     width: 38px;
+}
+table.G tbody tr td {
+    font-size: 24px;
+    height: 28px;
+    line-height: 28px;
+    width: 28px;
 }
 
 table.tabela tbody tr td {
@@ -149,9 +161,16 @@ table.tabela tbody tr td {
   text-transform: uppercase;
 }
 
-table.tabela tbody tr td.selecionado {
+table.tabela tbody tr td.marcado {
   background-color: #F9EDBE;
   color: brown;
+}
+
+table.tabela tbody tr td.encontrado {
+  background-color: #4D90FE;
+  background-image: -moz-linear-gradient(center top , #4D90FE, #4787ED);
+  color: #FFFFFF;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.1);
 }
 
 table.tabela tbody tr td.cruz {

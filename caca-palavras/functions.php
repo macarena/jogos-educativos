@@ -28,12 +28,11 @@ function montaPalavras($matriz_x,$matriz_y,$lista) {
 		$py = ($dir >= 0) ? mt_rand(0, $matriz_y - strlen($palavra)) : mt_rand(0, $matriz_y-1);
 
 		$respostas[$palavra][answer] = $palavra;
-		$respostas[$palavra][backwards] = 'false';
-
+		//$respostas[$palavra][backwards] = 'false';
 		$respostas[$palavra][x1] = $px;
 		$respostas[$palavra][y1] = $py;
-		$respostas[$palavra][clue] = 'null';
-		$respostas[$palavra][slug] = $palavra;
+		//$respostas[$palavra][clue] = 'null';
+		//$respostas[$palavra][slug] = $palavra;
 		for ($i = 0; $i < strlen($palavra); $i++) {
 			if(empty($m[$px][$py]) or $m[$px][$py] == $palavra[$p]) {
 				$m[$px][$py] = $palavra[$i];	

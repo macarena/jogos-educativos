@@ -2,13 +2,12 @@
 
 //definido tamanho padrão caso ele não seja defindo pela URL ou Bando de Dados
 if(!$tam_x or !$tam_y) {
-	$tam_x = 5;
-	$tam_y = 5;
+	$tam_x = 20;
+	$tam_y = 20;
 }
 
 //preenchendo a tabela com palavras
 $lista = array("ARARA","MARCO","INDIRA","AMOR","TESTE","CELULAR","ANIMAIS","SEXTA");
-$lista = array("ARARA","MARCO");
 
 //coloca as palavras na tabela, se não conseguir, morre.
 $max = 0;
@@ -24,8 +23,16 @@ $respostas = $montagem[1];
 
 $matriz = populaMatriz($tam_x,$tam_y,$matriz);
 
+if($tam_x < 11) { 
+	$tam_tabela = 'P';
+} elseif($tam_x < 16) {
+	$tam_tabela = 'M';
+} else {
+	$tam_tabela = 'G';
+}
+
 //desenhando a tabelas
-$tabela = new HTML_Table('class="content tabela"');
+$tabela = new HTML_Table("class=\"content tabela $tam_tabela\"");
 $tabela->setAutoGrow(true);
 
 for ($x = 0; $x < $tam_x; $x++) {
@@ -60,8 +67,6 @@ $content = $tabela->toHtml();
 		<h2 class="jogo-header">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam vitae enim sit amet nisl viverra aliquam et eu turpis. Sed leo augue, commodo ut volutpat vel, congue non felis. Duis vitae lectus ac tellus pharetra luctus nec et sapien. Pellentesque nec facilisis dui. Integer varius felis at enim posuere non sagittis diam sagittis. In fringilla rhoncus semper. Vivamus ultricies fringilla augue a scelerisque. Aliquam a fringilla justo.</h2>
 	</div>
 		<div id=board-game><? echo $content; ?></div>
-	<div id="palavra-MARCO">asd</div>
-	<div id="palavra-ARARA">asd</div>
 </div>
 
 <script>
@@ -129,23 +134,23 @@ $content = $tabela->toHtml();
 
             word.x1 = word.x2 = word.y1 = word.y2 = -1;
             
-            jQuery_sequence(word.pos).addClass('desabilitado');
+            jQuery_sequence(word.pos).addClass('encontrado');
 
             $('#palavra-' + word.slug).addClass('acerto');
             
             if ( ++hits == data.words.length )
-                alert('Parabéns! Você terminou.');
+                alert('Parabéns! Você encontrou todas as respostas.');
         }
     }
 
     function highlight(start, end) {
         normalize_pos(start, end);
         var seq = create_sequence(start.x, start.y, end.x, end.y);
-        jQuery_sequence(seq).addClass('selecionado')
+        jQuery_sequence(seq).addClass('marcado')
     }
 
     function unhighlight() {
-        $tds.filter('.selecionado').removeClass('selecionado')
+        $tds.filter('.marcado').removeClass('marcado')
     }
 
 	$table.bind('selectstart', function() {
