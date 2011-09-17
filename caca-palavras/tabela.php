@@ -38,7 +38,7 @@ $tabela->setAutoGrow(true);
 for ($x = 0; $x < $tam_x; $x++) {
   for ($y = 0; $y < $tam_y; $y++) {
       $tabela->setCellContents($x, $y, $matriz[$x][$y]);
-      $tabela->setCellAttributes($x, $y, "id=l-$y-$x");
+      $tabela->setCellAttributes($x, $y, "id=xy-$y-$x");
   }
 }
 
@@ -224,7 +224,7 @@ $content = $tabela->toHtml();
 		jQuery.each(seq, function(i, v) {
 			x = v[0];
 			y = v[1];
-			ids.push("#l-" + y + "-" + x );
+			ids.push("#xy-" + y + "-" + x );
 		});
 
 		return jQuery(ids.join(', '));
