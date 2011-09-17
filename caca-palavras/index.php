@@ -26,6 +26,7 @@ include 'debug.php';
 <head>
 	<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
 	<link href="style.css" media="screen" type="text/css" rel="stylesheet" />
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js" type="text/javascript"></script>
 </head>
 
 <body>
@@ -33,6 +34,7 @@ include 'debug.php';
 <? include 'header.php'; ?>
 <? include $content; ?>
 <? echo $footer; ?>
+
 
 </body>
 </html> 

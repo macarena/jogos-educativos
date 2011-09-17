@@ -27,31 +27,41 @@ function montaPalavras($matriz_x,$matriz_y,$lista) {
 		$px = ($dir <= 0) ? mt_rand(0, $matriz_x - strlen($palavra)) : mt_rand(0, $matriz_x-1);
 		$py = ($dir >= 0) ? mt_rand(0, $matriz_y - strlen($palavra)) : mt_rand(0, $matriz_y-1);
 
-		for ($p = 0; $p < strlen($palavra); $p++) {
+		$respostas[$palavra][answer] = $palavra;
+		$respostas[$palavra][backwards] = 'false';
+
+		$respostas[$palavra][x1] = $px;
+		$respostas[$palavra][y1] = $py;
+		$respostas[$palavra][clue] = 'null';
+		$respostas[$palavra][slug] = $palavra;
+		for ($i = 0; $i < strlen($palavra); $i++) {
 			if(empty($m[$px][$py]) or $m[$px][$py] == $palavra[$p]) {
-				$m[$px][$py] = $palavra[$p];	
+				$m[$px][$py] = $palavra[$i];	
 			} else { return false; }
-			$respostas[$palavra][] = array('x'=>$px,'y'=>$py);
+			$respostas[$palavra][pos] .= ($i == 0) ? "[$px, $py]" : ", [$px, $py]";
+			$respostas[$palavra][x2] = $px;
+			$respostas[$palavra][y2] = $py;
 			$px = ($dir <= 0) ? $px+1 : $px;
 			$py = ($dir >= 0) ? $py+1 : $py;
 		}
 	}
-	return array($m,$respostas);
-}
 
-//exibir respostas
-function exibirRespostas($respostas) {
-	foreach($respostas as $palavra){
-		foreach($palavra as $letra){
-			$tabela->setCellAttributes($letra[x], $letra[y], "bgcolor=green align=center");
-			if(in_array($letra[y], $cruz["$letra[x]"])) {
-				$tabela->setCellAttributes($letra[x], $letra[y], "bgcolor=red align=center");
-			}
-			$cruz["$letra[x]"][] = $letra[y];
-			
+	$out = '';
+	$i = 0;
+
+	foreach($respostas as $dados){
+		$out .= ($i == 0) ? "{" : ",{";
+		foreach($dados as $k=>$v){
+			if($k == 'answer') { $out .= "\"$k\": \"$v\""; }
+			elseif($k == 'slug') { $out .= ", \"$k\": \"$v\""; }
+			elseif($k == 'pos') { $out .= ", \"$k\": [$v]"; }
+			else { $out .= ", \"$k\": $v "; }
 		}
+		$out .= "}";
+		$i++;
 	}
-	return $tabela;
+
+	return array($m,$out);
 }
 
 ?>

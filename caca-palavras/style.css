@@ -149,11 +149,14 @@ table.tabela tbody tr td {
   text-transform: uppercase;
 }
 
-table.tabela tbody tr td.marcado {
+table.tabela tbody tr td.selecionado {
   background-color: #F9EDBE;
   color: brown;
 }
 
 table.tabela tbody tr td.cruz {
   background-color: #F0DDE0 !important;
+}
+table.tabela {
+	-moz-user-select: none;
 }
