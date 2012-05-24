@@ -8,7 +8,7 @@ foreach ($_GET as $k=>$v) {
 	$$k = $v;
 }
 
-if($id) {
+if($nome) {
 	//pega a tabela do jogo
 	$content = 'bingo.php';
 } else {
